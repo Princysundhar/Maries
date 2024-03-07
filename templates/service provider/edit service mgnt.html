@@ -1,0 +1,36 @@
+{% extends 'service provider/servicce_index.html' %}
+{% block body %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+</head>
+
+<body>
+<form action="/edit_my_service_post/{{ id }}" method="post" enctype="multipart/form-data" name="form1" id="form1">
+    {% csrf_token %}
+  <table width="200" class="table text-white">
+    <tr>
+      <th scope="row">Photo </th>
+      <td><label for="textfield3"></label>
+        <label for="fileField"></label>
+           <img src="{{ data.photo }}" height="100" width="100"/>
+        <input type="file" name="fileField" id="fileField" /></td>
+    </tr>
+    <tr>
+      <th scope="row">Description</th>
+      <td><label for="textfield4"></label>
+      <input type="text" name="textfield4" id="textfield4" value="{{ data.descrption }}" /></td>
+    </tr>
+    <tr>
+      <th scope="row">Price</th>
+      <td><label for="textfield5"></label>
+      <input type="text" name="textfield5" id="textfield5" value="{{ data.price }}" /></td>
+    </tr>
+    <tr>
+      <th colspan="2" scope="row"><input type="submit" name="button" id="button" value="Add" /></th>
+    </tr>
+  </table>
+  <p>&nbsp;</p>
+  {% endblock %}

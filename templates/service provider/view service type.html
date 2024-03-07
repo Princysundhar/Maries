@@ -1,0 +1,34 @@
+{% extends 'service provider/servicce_index.html' %}
+{% block body %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+</head>
+
+<body> <form action="" method="">
+<p>&nbsp;</p>
+<table width="415" class="table text-white">
+    <tr>
+    <th width="32" scope="row">sl no</th>
+    <td width="142">service type</td>
+{#    <td width="133">subcategory</td>#}
+    <td width="80">&nbsp;</td>
+  </tr>
+    {% for i in data %}
+  <tr>
+    <th >{{ forloop.counter }}</th>
+    <td>{{ i.type }}</td>
+{#    <td>{{ i.subcatogary }}</td>#}
+    <td>
+{#        <p><a href="/update_service_type">update</a></p>#}
+      <p><a href="/service_provider_view_subcat/{{ i.id }}">view subcategory</a></p></td>
+  </tr>
+    {% endfor %}
+  </table>
+<p>&nbsp;</p>
+</form>
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends 'service provider/index.html' %}
+{% block body %}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+</head>
+
+<body>
+<h3 style="text-align:center;font-family: Roboto;">service management</h3>
+<form action="/update_service_post/{{ data1.id }}" method="post" enctype="multipart/form-data" name="form1" id="form1">
+{% csrf_token %}
+  <table width="200" border="1" class="table table-bordered">
+      <tr align="center">
+      <th scope="row">subcategory</th>
+      <td align="left">
+        <select name="select" id="select2" class="form-control">
+             {% for i in data %}
+                 <option value="{{ i.id }}" {% if i.id == data1.SUBCATEGORY_id %} selected {% endif %}>{{ i.subcategory_name }}</option>
+            {% endfor %}
+      </select></td>
+    </tr>
+    <tr align="center">
+      <th scope="row">photo</th>
+      <td align="left">
+          <img src="{{ data1.photo }}" height="100px" width="100px" alt=""/>
+      <input type="file" name="fileField" id="fileField" class="form-control"  /></td>
+    </tr>
+    <tr align="center">
+      <th scope="row">Description</th>
+      <td align="left">
+      <textarea name="textarea" id="textarea" cols="45" rows="5" class="form-control" required>{{ data1.description }}</textarea></td>
+    </tr>
+    <tr align="center">
+      <th scope="row">price</th>
+      <td align="left">
+      <input type="text" name="textfield" id="textfield" value="{{ data1.price }}" class="form-control" required /></td>
+    </tr>
+    <tr>
+        <th colspan="2" scope="row"><div align="center"><input type="submit" name="button" id="button" value="Update" class="btn btn-success" /></div></th>
+    </tr>
+  </table>
+</form>
+</body>
+</html>
+
+
+{% endblock %}

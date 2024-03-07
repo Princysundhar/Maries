@@ -1,0 +1,45 @@
+{% extends 'admin/index.html' %}
+{% block body %}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+</head>
+
+<body>
+{% if data %}
+<h3 style="text-align:center;font-family: Roboto;">View Service Provider</h3>
+<form id="form1" name="form1" method="post" action="" enctype="multipart/form-data">
+  <table align="center" class="table table-bordered">
+    <tr align="center" style="background-color: #D81324;color: white">
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Address</th>
+      <th scope="col">Email</th>
+      <th scope="col">Phone no</th>
+      <th scope="col">photo</th>
+      <th scope="col">&nbsp;</th>
+      <th scope="col">&nbsp;</th>
+    </tr>
+      {% for i in data %}
+    <tr>
+      <td>&nbsp;{{ forloop.counter }}</td>
+      <td>&nbsp;{{ i.name }}</td>
+      <td>&nbsp;{{ i.place }}<br>{{ i.post }}<br>{{ i.pin }}</td>
+      <td>&nbsp;{{ i.email }}</td>
+      <td>&nbsp;{{ i.phone_no }}</td>
+      <td>&nbsp;<img src="{{ i.photo }}" height="100px" width="100px" alt=""/></td>
+      <td><a href="/view_approved_service_provider/{{ i.LOGIN.id }}" class="btn btn-success" onclick="return confirm('Are you sure?')">Approve</a></td>
+      <td><a href="/view_reject_service_provider/{{ i.LOGIN.id }}" class="btn btn-danger" onclick="return confirm('Are you sure?')">Reject</a></td>
+    </tr>
+      {% endfor %}
+  </table>
+</form>
+{% endif %}
+</body>
+</html>
+
+
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'admin/index.html' %}
+{% block body %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+</head><body><form action="/add_service_type_post" method="post">
+{% csrf_token %}
+
+<table>
+    <tr>
+      <th scope="row">type:</th>
+      <td><label for="textfield"></label>
+      <input type="text" name="textfield" class="form-control" id="textfield" /></td>
+    </tr>
+    <tr>
+      <th colspan="2" scope="row"><input type="submit" class="btn btn-primary py-2 px-3" name="button" id="button" value="Add" /></th>
+    </tr>
+  </table>
+  </form>
+</body>
+</html>
+{% endblock %}

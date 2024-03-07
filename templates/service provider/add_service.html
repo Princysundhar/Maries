@@ -1,0 +1,83 @@
+{% extends 'service provider/index.html' %}
+{% block body %}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+</head>
+    <script type="text/javascript">
+var xmlHttp;
+            function adds(eid){
+{#               alert(eid);#}
+                if (typeof XMLHttpRequest != "undefined"){
+                xmlHttp= new XMLHttpRequest();
+                }
+                else if (window.ActiveXObject){
+                    xmlHttp= new ActiveXObject("Microsoft.XMLHTTP");
+                }
+                if (xmlHttp==null){
+                    alert("Browser does not support XMLHTTP Request")
+                    return;
+                }
+                var url="/view_service_type_subcategory/"+eid
+                xmlHttp.onreadystatechange = stateChange;
+                xmlHttp.open("GET", url, true);
+                xmlHttp.send(null);
+            }
+
+            function stateChange(){
+                if(xmlHttp.readyState==4 || xmlHttp.readyState=="complete"){
+                    document.getElementById("sub").innerHTML=xmlHttp.responseText
+
+                }
+            }
+</script>
+
+<body>
+<h3 style="text-align:center;font-family: Roboto;">service management</h3>
+<form action="/add_service_post" method="post" enctype="multipart/form-data" name="form1" id="form1">
+    {% csrf_token %}
+  <table width="200" border="1" class="table table-bordered">
+        <tr align="center">
+      <th scope="row">Service Type</th>
+      <td align="left">
+        <select name="select1" id="select1" onchange="adds(this.value)" class="form-control">
+        <option>Select Type</option>
+            {% for i in data1 %}
+                <option value="{{ i.id }}">{{ i.type }} </option>
+            {% endfor %}
+      </select></td>
+    </tr>
+  <tr>
+
+      <tr align="center">
+      <th scope="row">subcategory</th>
+      <td id="sub" align="left">
+       </td>
+    </tr>
+    <tr align="center">
+      <th scope="row">photo</th>
+      <td align="left">
+      <input type="file" name="fileField" id="fileField" class="form-control" required /></td>
+    </tr>
+    <tr align="center">
+      <th scope="row">Description</th>
+      <td align="left">
+      <textarea name="textarea" id="textarea" cols="45" rows="5" class="form-control" required></textarea></td>
+    </tr>
+    <tr align="center">
+      <th scope="row">price</th>
+      <td align="left">
+      <input type="text" name="textfield" id="textfield" class="form-control" min="100" required /></td>
+    </tr>
+    <tr>
+        <th colspan="2" scope="row"><div align="center"><input type="submit" name="button" id="button" value="ADD" class="btn btn-primary" /></div></th>
+    </tr>
+  </table>
+</form>
+</body>
+</html>
+
+{% endblock %}

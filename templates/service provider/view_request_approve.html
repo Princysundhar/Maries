@@ -1,0 +1,43 @@
+{% extends 'service provider/index.html' %}
+{% block body %}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+</head>
+
+<body>
+<h3 style="text-align:center;font-family: Roboto;color: white">view request approve</h3>
+<form id="form1" name="form1" method="post" action="">
+  <table align="center" class="table table-bordered">
+    <tr align="center" style="background-color: #D81324;color: white">
+      <th scope="col">#</th>
+      <th scope="col">Userinfo</th>
+      <th scope="col">Amount</th>
+      <th scope="col">date</th>
+      <th scope="col">Status</th>
+      <th scope="col">payment status</th>
+      <th scope="col"></th>
+
+    </tr>
+      {% for i in data %}
+    <tr style="color: white">
+      <td>&nbsp;{{ forloop.counter }}</td>
+      <td>&nbsp;{{ i.USER.name }}<br>{{ i.USER.email }}</td>
+      <td>{{ i.amount }}</td>
+      <td>&nbsp;{{ i.date }}</td>
+      <td>&nbsp;{{ i.status }}</td>
+      <td>{{ i.payment_status }}</td>
+          <td align="center"><a href="/chatt/{{ i.USER_id }}#ff" class="btn btn-danger">chat</a></td>
+
+    </tr>
+      {% endfor %}
+  </table>
+</form>
+</body>
+</html>
+
+
+{% endblock %}

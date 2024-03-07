@@ -1,0 +1,42 @@
+{% extends 'admin/index.html' %}
+{% block body %}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+</head>
+
+<body>
+<h3 style="text-align:center;font-family: Roboto;color: white">View Approved Service Provider</h3>
+<form id="form1" name="form1" method="post" action="">
+  <table align="center" class="table table-bordered">
+    <tr align="center" style="background-color: #D81324;color: white">
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Address</th>
+      <th scope="col">Email</th>
+      <th scope="col">Phone no</th>
+      <th scope="col">photo</th>
+      <th scope="col"></th>
+      </tr>
+      {% for i in data %}
+    <tr style="color: white">
+      <td align="center" >&nbsp;{{ forloop.counter }}</td>
+      <td align="center">&nbsp;{{ i.name }}</td>
+      <td align="center">&nbsp;{{ i.place }}<br>{{ i.post }}<br>{{ i.pin }}</td>
+      <td align="center">&nbsp;{{ i.email }}</td>
+      <td align="center">&nbsp;{{ i.phone_no }}</td>
+      <td align="center"> <img src="{{ i.photo }}" alt="" width="100px" height="100px"/></td>
+      <td align="center"> <a href="/view_rating/{{ i.id }}#ff" class="btn btn-success">Rating</a> </td>
+
+    </tr>
+      {% endfor %}
+  </table>
+</form>
+</body>
+</html>
+
+
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'service provider/index.html' %}
+{% block body %}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+</head>
+
+<body>
+<h3 style="text-align:center;font-family: Roboto;color: white">view request from user</h3>
+<form id="form1" name="form1" method="post" action="">
+  <table align="center" class="table table-bordered">
+    <tr align="center" style="background-color: #D81324;color: white">
+      <th scope="col">#</th>
+      <th scope="col">Userinfo</th>
+      <th scope="col">date</th>
+      <th scope="col">Status</th>
+      <th scope="col">&nbsp;</th>
+      <th scope="col">&nbsp;</th>
+{#      <th scope="col">&nbsp;</th>#}
+
+    </tr>
+      {% for i in data %}
+    <tr style="color: white">
+      <td align="center">&nbsp;{{ forloop.counter }}</td>
+      <td align="center" >&nbsp;{{ i.USER.name }}<br>{{ i.USER.email }}</td>
+      <td align="center">&nbsp;{{ i.date }}</td>
+      <td align="center">&nbsp;{{ i.status }}</td>
+      <td align="center"><a href="/view_service_for_request/{{ i.id }}#ff" class="btn btn-danger">Service</a></td>
+{#      <td align="center"><a href="/view_approved_request/{{ i.id }}" class="btn btn-success">Approve</a></td>#}
+{#      <td align="center"><a href="/view_reject_request/{{ i.id }}" class="btn btn-danger">Reject</a></td>#}
+        <td><p><a href="/view_approved_request/{{ i.id }}" class="btn btn-danger" onclick="return confirm('Are you sure?')">Approve</a></p><br>
+      <p><a href="/view_reject_request/{{ i.id }}" class="btn btn-danger" onclick="return confirm('Are you sure?')">Reject</a></p></td>
+{#      <td align="center"><a href="/chatt/{{ i.USER_id }}#ff" class="btn btn-success">chat</a></td>#}
+    </tr>
+      {% endfor %}
+  </table>
+</form>
+</body>
+</html>
+
+
+{% endblock %}

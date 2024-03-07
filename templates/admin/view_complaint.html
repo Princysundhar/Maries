@@ -1,0 +1,44 @@
+{% extends 'admin/index.html' %}
+{% block body %}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+</head>
+
+<body>
+<h3 style="text-align:center;font-family: Roboto;color: white">View Complaint</h3>
+<form id="form1" name="form1" method="post" action="">
+  <table align="center" class="table table-bordered">
+    <tr align="center" style="background-color: #D81324;color: white">
+      <th scope="col">#</th>
+      <th scope="col">Complaint</th>
+      <th scope="col">complaint date</th>
+      <th scope="col">Userinfo</th>
+      <th scope="col">Reply </th>
+      <th scope="col">Reply Date</th>
+    </tr>
+      {% for i in data %}
+    <tr style="color: white">
+      <td>&nbsp;{{ forloop.counter }}</td>
+      <td>&nbsp;{{ i.complaints }}</td>
+      <td>&nbsp;{{ i.complaint_date }}</td>
+      <td>&nbsp;{{ i.USER.name }}<br>{{ i.USER.email }}</td>
+{#        <td colspan="2"><div align="center"><a href="/send_reply/{{ i.id }}#ff" class="btn btn-success">send reply</a></div></td>#}
+    {% if i.reply == 'pending' %}
+            <td colspan="2" align="center"><a href="/send_reply/{{ i.id }}#ff" class="btn btn-danger">send reply</a></td>
+        {% else %}
+            <td align="center">&nbsp;{{ i.reply }}</td>
+            <td align="center">&nbsp;{{ i.reply_date }}</td>
+        {% endif %}
+    </tr>
+      {% endfor %}
+  </table>
+</form>
+</body>
+</html>
+
+
+{% endblock %}
